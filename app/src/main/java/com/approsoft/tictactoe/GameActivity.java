@@ -84,7 +84,7 @@ public class GameActivity extends AppCompatActivity {
         player1Ref = playerSectionRef.child("player1");
         player2Ref = playerSectionRef.child("player2");
 
-
+        buttonsList.clear();
         for(int i=0; i<9; i++){
             Button button = (Button) findViewById(buttonIDs[i]);
             buttonsList.add(i, button);
@@ -274,7 +274,6 @@ public class GameActivity extends AppCompatActivity {
                         move.put("symbol", "X");
                         moveRoot.updateChildren(move);
 
-                        opponentsTurn();
                     }else{
                         button.setText("O");
 
@@ -288,12 +287,12 @@ public class GameActivity extends AppCompatActivity {
                         move.put("symbol", "O");
                         moveRoot.updateChildren(move);
 
-                        opponentsTurn();
                     }
+                    opponentsTurn();
                     button.setEnabled(false);
 //                    draw++;
-                    checkWin();
-                    checkDraw();
+//                    checkWin();
+//                    checkDraw();
                 }
             });
         }
