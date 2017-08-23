@@ -185,6 +185,9 @@ public class GameActivity extends AppCompatActivity {
                     Button button = buttonsList.get(moveLocationInt);
                     button.setText(moveSymbol);
                     button.setEnabled(false);
+                    draw++;
+                    checkWin();
+                    checkDraw();
                     if(iAmX){
                         if(moveSymbol.equals("X")){
                             //Todo : I sent this move
@@ -282,13 +285,13 @@ public class GameActivity extends AppCompatActivity {
                         DatabaseReference moveRoot = gameActivityRef.child(tempKey);
                         Map<String, Object> move = new HashMap<>();
                         move.put("location", index);
-                        move.put("symbol", "X");
+                        move.put("symbol", "O");
                         moveRoot.updateChildren(move);
 
                         opponentsTurn();
                     }
                     button.setEnabled(false);
-                    draw++;
+//                    draw++;
                     checkWin();
                     checkDraw();
                 }
@@ -711,7 +714,7 @@ public class GameActivity extends AppCompatActivity {
     private void newGame(){
         for(int i=0; i<9; i++){
             Button button = buttonsList.get(i);
-            button.setEnabled(false);
+            button.setEnabled(true);
             button.setText("");
         }
         gameActivityRef.setValue(null);
